@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahé — Robes sur mesure, Bruges</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   PALETTE MAHÉ — chocolats & crèmes
+══════════════════════════════════════ */
+:root{
+  --choco-nuit: #2C1A0E;
+  --choco-chaud: #5C3337;
+  --caramel: #A67048;
+  --sable: #E8D9C5;
+  --creme: #F5EFE6;
+  --blanc-casse: #FAFBF5;
+  --or-ligne: #C9A07A;
+
+  --text: #2C1A0E;
+  --text-soft: #6B4E3D;
+  --text-mute: #9A826F;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--creme);
+  color:var(--text);
+  font-weight:300;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ═══════════ NAVIGATION ═══════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 60px;
+  background:rgba(245,239,230,.7);
+  backdrop-filter:blur(14px);
+  transition:all .35s ease;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(245,239,230,.97);
+  padding:12px 60px;
+  border-bottom-color:rgba(166,112,72,.15);
+}
+.logo-wrap{display:flex;align-items:center;text-decoration:none;color:var(--choco-nuit)}
+.logo-img{
+  height:70px;width:auto;
+  transition:height .35s ease;
+  /* Keep the logo black — no filter needed since PNG is already black on transparent */
+}
+nav.scrolled .logo-img{height:56px}
+.nav-links{display:flex;gap:38px;list-style:none;align-items:center}
+.nav-links a{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--text);text-decoration:none;font-weight:300;
+  position:relative;padding:6px 0;
+  transition:color .2s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1px;background:var(--caramel);
+  transition:width .3s ease;
+}
+.nav-links a:hover{color:var(--caramel)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--caramel)}
+
+/* ═══════════ HERO ═══════════ */
+#hero{
+  min-height:100vh;
+  position:relative;
+  padding:140px 60px 80px;
+  display:flex;align-items:center;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(232,217,197,.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(166,112,72,.12) 0%, transparent 50%),
+    var(--creme);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  max-width:1400px;margin:0 auto;width:100%;
+  align-items:center;
+}
+.hero-eyebrow{
+  font-size:10px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--caramel);margin-bottom:28px;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{
+  content:'';width:32px;height:1px;background:var(--caramel);
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(56px,7vw,96px);
+  font-weight:300;line-height:1.05;
+  color:var(--choco-nuit);
+  margin-bottom:28px;
+  letter-spacing:-1.5px;
+}
+.hero-title em{
+  font-style:italic;
+  color:var(--caramel);
+}
+.hero-desc{
+  font-size:15px;line-height:1.9;
+  color:var(--text-soft);
+  margin-bottom:40px;max-width:480px;
+}
+.hero-cta-row{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:16px 36px;
+  background:var(--choco-nuit);color:var(--blanc-casse);
+  text-decoration:none;
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  transition:all .3s ease;
+  border:1px solid var(--choco-nuit);
+}
+.btn-primary:hover{background:var(--caramel);border-color:var(--caramel)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:16px 36px;
+  background:transparent;color:var(--choco-nuit);
+  text-decoration:none;
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  border:1px solid var(--choco-nuit);
+  transition:all .3s ease;
+}
+.btn-secondary:hover{background:var(--choco-nuit);color:var(--blanc-casse)}
+
+/* ═══════ EMPLACEMENTS PHOTO ═══════ */
+/* 
+  Chaque photo-slot est un conteneur qui garde son ratio.
+  L'image réelle est appliquée en background-image via data-photo="xx" 
+  → voir la fin du fichier pour les instructions !
+*/
+.photo-slot{
+  position:relative;
+  background:var(--sable);
+  background-size:cover;
+  background-position:center center;
+  overflow:hidden;
+}
+.photo-placeholder{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;
+  background:
+    linear-gradient(135deg, rgba(166,112,72,.08) 0%, transparent 50%),
+    repeating-linear-gradient(45deg,
+      rgba(166,112,72,.05) 0, rgba(166,112,72,.05) 2px,
+      transparent 2px, transparent 18px);
+  color:var(--text-soft);
+  transition:opacity .3s;
+  padding:20px;
+}
+/* When photo is loaded, hide the placeholder */
+.photo-slot.filled .photo-placeholder{opacity:0;pointer-events:none}
+.photo-placeholder::before{
+  content:'';position:absolute;inset:14px;
+  border:1px dashed rgba(166,112,72,.35);
+}
+.photo-icon{font-size:32px;color:var(--caramel);opacity:.7;z-index:1}
+.photo-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;z-index:1;text-align:center}
+.photo-hint{
+  font-size:10px;color:var(--text-mute);font-style:italic;z-index:1;
+  text-align:center;font-family:monospace;
+  background:rgba(250,251,245,.7);padding:3px 8px;
+  border-radius:2px;
+}
+
+.hero-photo{aspect-ratio:3/4;box-shadow:0 40px 80px -30px rgba(44,26,14,.3)}
+.hero-accent{
+  position:absolute;top:-30px;right:-30px;
+  width:140px;height:140px;
+  background:var(--sable);
+  z-index:-1;opacity:.6;
+}
+
+/* ═══════════ SECTIONS ═══════════ */
+section{padding:120px 60px;position:relative}
+.container{max-width:1300px;margin:0 auto}
+.section-label{
+  font-size:10px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--caramel);margin-bottom:18px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-label::before{content:'';width:28px;height:1px;background:var(--caramel)}
+.section-label.center{justify-content:center}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(38px,5vw,60px);
+  font-weight:300;line-height:1.1;
+  color:var(--choco-nuit);
+  margin-bottom:24px;letter-spacing:-1px;
+}
+.section-title em{
+  font-style:italic;
+  color:var(--caramel);
+}
+.section-title.center{text-align:center}
+.section-intro{
+  font-size:15px;line-height:1.9;color:var(--text-soft);
+  max-width:620px;
+}
+.section-intro.center{text-align:center;margin:0 auto}
+.divider{width:56px;height:1px;background:var(--caramel);margin:28px 0}
+.divider.center{margin:28px auto}
+
+/* ═══════════ À PROPOS ═══════════ */
+#apropos{background:var(--creme)}
+.apropos-grid{
+  display:grid;grid-template-columns:5fr 7fr;gap:80px;
+  align-items:center;
+}
+.apropos-photo{
+  aspect-ratio:3/4;position:relative;
+  box-shadow:0 40px 80px -30px rgba(44,26,14,.25);
+}
+.apropos-content .section-title{margin-bottom:10px}
+.apropos-signature{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:28px;color:var(--caramel);
+  margin-top:32px;font-weight:400;
+}
+.apropos-text{
+  font-size:15px;line-height:1.95;color:var(--text-soft);
+  margin-bottom:18px;
+}
+.text-ph{
+  background:
+    repeating-linear-gradient(0deg,
+      rgba(166,112,72,.06) 0, rgba(166,112,72,.06) 1px,
+      transparent 1px, transparent 28px);
+  padding:24px;border:1px dashed rgba(166,112,72,.28);
+  font-size:12px;letter-spacing:1.5px;
+  color:var(--text-mute);
+  font-style:italic;
+  margin-bottom:20px;
+  font-family:monospace;
+}
+
+/* ═══════════ ROBE DE MARIÉE ═══════════ */
+#mariee{background:linear-gradient(180deg, var(--creme) 0%, var(--blanc-casse) 100%)}
+.steps-wrap{margin-top:60px}
+.steps-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.step-card{display:flex;flex-direction:column;transition:transform .4s ease}
+.step-card:hover{transform:translateY(-6px)}
+.step-photo{aspect-ratio:3/4;position:relative;margin-bottom:24px}
+.step-num{
+  position:absolute;top:14px;left:14px;z-index:3;
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--choco-nuit);color:var(--blanc-casse);
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-weight:400;
+  border-radius:50%;
+}
+.step-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;
+  color:var(--choco-nuit);
+  margin-bottom:10px;line-height:1.2;
+}
+.step-title em{font-style:italic;color:var(--caramel)}
+.step-desc{font-size:13px;line-height:1.75;color:var(--text-soft)}
+.step-ph-txt{color:var(--text-mute);font-style:italic;font-size:12px;font-family:monospace}
+
+/* ═══════════ ROBE INVITÉE ═══════════ */
+#invitee{background:var(--choco-nuit);color:var(--blanc-casse)}
+#invitee .section-title{color:var(--blanc-casse)}
+#invitee .section-intro{color:rgba(250,251,245,.6)}
+#invitee .section-title em{color:var(--sable)}
+.invitee-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px}
+.invitee-photo{aspect-ratio:4/5;position:relative}
+.invitee-photo .photo-placeholder{
+  background:
+    linear-gradient(135deg, rgba(166,112,72,.12) 0%, transparent 60%),
+    repeating-linear-gradient(45deg,
+      rgba(232,217,197,.05) 0, rgba(232,217,197,.05) 2px,
+      transparent 2px, transparent 18px);
+  color:rgba(250,251,245,.45);
+}
+.invitee-photo .photo-placeholder::before{border-color:rgba(232,217,197,.25)}
+.invitee-photo .photo-icon{color:var(--sable)}
+.invitee-photo .photo-hint{background:rgba(44,26,14,.5);color:rgba(232,217,197,.5)}
+.invitee-text{
+  font-size:15px;line-height:1.95;color:rgba(250,251,245,.7);
+  margin-bottom:20px;
+}
+.invitee-features{display:flex;flex-direction:column;gap:18px;margin-top:36px}
+.inv-feat{display:flex;align-items:flex-start;gap:14px}
+.inv-feat-icon{
+  width:28px;height:28px;flex-shrink:0;
+  border:1px solid var(--sable);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--sable);font-size:12px;margin-top:2px;
+}
+.inv-feat-text{font-size:13px;line-height:1.7;color:rgba(250,251,245,.75)}
+.inv-feat-text strong{color:var(--sable);font-weight:400;letter-spacing:1px}
+
+/* ═══════════ GALERIE ═══════════ */
+#galerie{background:var(--blanc-casse)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:60px}
+.gal-item{aspect-ratio:3/4;position:relative;cursor:pointer;transition:transform .3s}
+.gal-item:hover{transform:scale(1.02);z-index:2}
+.gal-item.wide{grid-column:span 2;aspect-ratio:6/4}
+
+/* Avis */
+.avis-wrap{margin-top:80px;padding:56px 48px;background:var(--sable);position:relative}
+.avis-wrap::before{
+  content:'"';
+  font-family:'Cormorant Garamond',serif;
+  font-size:200px;line-height:1;
+  color:var(--caramel);opacity:.18;
+  position:absolute;top:20px;left:40px;
+}
+.avis-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;position:relative;z-index:1}
+.avis-stars{color:var(--caramel);font-size:14px;letter-spacing:3px;margin-bottom:16px}
+.avis-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-style:italic;
+  line-height:1.7;color:var(--choco-nuit);
+  margin-bottom:20px;
+}
+.avis-author{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-soft)}
+.avis-author strong{color:var(--choco-nuit);font-weight:500}
+
+/* ═══════════ CONTACT ═══════════ */
+#contact{background:var(--creme);padding-bottom:80px}
+.contact-grid{display:grid;grid-template-columns:5fr 7fr;gap:80px;margin-top:60px;align-items:start}
+.contact-info-txt{font-size:15px;line-height:1.95;color:var(--text-soft);margin-bottom:36px}
+.contact-detail-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.contact-ico{
+  width:42px;height:42px;flex-shrink:0;
+  border:1px solid var(--caramel);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--caramel);font-size:14px;
+}
+.contact-det-text{font-size:13px;color:var(--choco-nuit);letter-spacing:1px}
+.contact-det-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-mute);margin-bottom:3px;display:block}
+
+.form{background:var(--blanc-casse);padding:48px;box-shadow:0 30px 60px -30px rgba(44,26,14,.15)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.form-row-single{margin-bottom:20px}
+.form-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-soft);display:block;margin-bottom:8px}
+.form input,.form textarea{
+  width:100%;padding:14px 16px;
+  border:1px solid rgba(166,112,72,.25);
+  background:var(--creme);
+  font-family:'Jost',sans-serif;font-size:14px;font-weight:300;
+  color:var(--choco-nuit);outline:none;transition:border-color .25s;
+}
+.form input:focus,.form textarea:focus{border-color:var(--caramel)}
+.form textarea{resize:none;height:120px}
+.radio-group{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.radio-opt{
+  padding:14px 16px;
+  border:1px solid rgba(166,112,72,.25);background:var(--creme);
+  cursor:pointer;transition:all .22s;
+  font-size:11px;letter-spacing:1px;color:var(--text-soft);
+  text-align:center;user-select:none;
+}
+.radio-opt:hover{border-color:var(--caramel)}
+.radio-opt.active{background:var(--choco-nuit);color:var(--blanc-casse);border-color:var(--choco-nuit)}
+.form-submit{
+  width:100%;margin-top:20px;padding:18px;
+  background:var(--choco-nuit);color:var(--blanc-casse);
+  border:none;font-family:'Jost',sans-serif;
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  cursor:pointer;transition:background .3s;
+}
+.form-submit:hover{background:var(--caramel)}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{background:var(--choco-nuit);color:var(--sable);padding:72px 60px 32px}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;
+  max-width:1300px;margin:0 auto;padding-bottom:48px;
+  border-bottom:1px solid rgba(232,217,197,.15);
+}
+.footer-logo{
+  display:block;margin-bottom:16px;
+  /* On inverse le logo noir en blanc pour le footer sombre */
+  filter:invert(1) brightness(1.2);
+  height:80px;width:auto;
+}
+.footer-tag{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--caramel);margin-bottom:20px}
+.footer-desc{font-size:13px;line-height:1.8;color:rgba(232,217,197,.55);max-width:360px}
+.footer-col-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--caramel);margin-bottom:20px}
+.footer-col a{
+  display:block;font-size:13px;color:rgba(232,217,197,.6);
+  text-decoration:none;margin-bottom:12px;transition:color .2s;
+}
+.footer-col a:hover{color:var(--blanc-casse)}
+.footer-bottom{
+  max-width:1300px;margin:32px auto 0;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(232,217,197,.35);
+}
+.socials{display:flex;gap:14px}
+.social-link{
+  width:36px;height:36px;
+  border:1px solid rgba(232,217,197,.25);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(232,217,197,.6);text-decoration:none;
+  transition:all .3s;font-size:13px;
+}
+.social-link:hover{border-color:var(--caramel);color:var(--caramel)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}
+.reveal.visible{opacity:1;transform:none}
+
+/* Responsive */
+@media(max-width:1000px){
+  nav,section,footer{padding-left:30px;padding-right:30px}
+  .hero-grid,.apropos-grid,.invitee-grid,.contact-grid,.footer-top{grid-template-columns:1fr;gap:50px}
+  .steps-grid,.gallery-grid,.avis-inner{grid-template-columns:1fr 1fr}
+  .gal-item.wide{grid-column:span 2}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .steps-grid,.gallery-grid,.avis-inner,.form-row,.radio-group{grid-template-columns:1fr}
+  .gal-item.wide{grid-column:span 1}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav id="navbar">
+  <a href="#hero" class="logo-wrap">
+    <img src="logo-mahe.png" alt="Mahé" class="logo-img">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#apropos" class="nav-link">À propos</a></li>
+    <li><a href="#mariee" class="nav-link">Robe de mariée</a></li>
+    <li><a href="#invitee" class="nav-link">Robe d'invitée</a></li>
+    <li><a href="#galerie" class="nav-link">Galerie</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Atelier de couture — Bruges</div>
+      <h1 class="hero-title">Votre robe,<br>créée <em>pour vous</em></h1>
+      <p class="hero-desc">Chez Mahé, chaque robe est une rencontre. Une conversation, un dessin, un tissu choisi. Du premier rendez-vous à l'essayage final, je vous accompagne dans la création d'une pièce unique — pour le plus beau jour, ou pour celui où l'on vous invite.</p>
+      <div class="hero-cta-row">
+        <a href="#contact" class="btn-primary">Prendre rendez-vous →</a>
+        <a href="#galerie" class="btn-secondary">Voir la galerie</a>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div class="hero-accent"></div>
+      <!-- 🖼 PHOTO 1 : Hero principal — nom du fichier : photos/hero.jpg -->
+      <div class="photo-slot hero-photo" data-photo="hero">
+        <div class="photo-placeholder">
+          <div class="photo-icon">❈</div>
+          <div class="photo-lbl">Photo principale</div>
+          <div class="photo-hint">photos/hero.jpg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ À PROPOS ═══════════ -->
+<section id="apropos">
+  <div class="container">
+    <div class="apropos-grid reveal">
+
+      <div style="position:relative">
+        <div class="hero-accent" style="top:-24px;left:-24px;right:auto;background:var(--caramel);opacity:.25"></div>
+        <!-- 🖼 PHOTO 2 : Portrait — nom du fichier : photos/portrait.jpg -->
+        <div class="photo-slot apropos-photo" data-photo="portrait">
+          <div class="photo-placeholder">
+            <div class="photo-icon">❈</div>
+            <div class="photo-lbl">Portrait</div>
+            <div class="photo-hint">photos/portrait.jpg</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="apropos-content">
+        <div class="section-label">La maison</div>
+        <h2 class="section-title">Moi, <em>c'est Mahé</em></h2>
+        <div class="divider"></div>
+        <div class="text-ph">
+          ✎ Emplacement pour votre texte de présentation<br>
+          (Qui vous êtes, votre parcours, votre vision de la couture)
+        </div>
+        <p class="apropos-text">Mahé est un atelier de couture installé à Bruges, où chaque robe naît d'une histoire. Je travaille à la main, les matières nobles — dentelle, soie, tulle brodé — dans le respect du geste et du temps qu'il faut pour bien faire.</p>
+        <p class="apropos-text">Que vous soyez la mariée ou une invitée qui rêve d'une tenue unique, vous êtes ici chez vous. On prend un café, on discute, on dessine ensemble.</p>
+        <div class="apropos-signature">— Mahé</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ROBE DE MARIÉE ═══════════ -->
+<section id="mariee">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:0" class="reveal">
+      <div class="section-label center">Votre robe de mariée</div>
+      <h2 class="section-title center">Cinq rendez-vous,<br>une <em>création</em></h2>
+      <div class="divider center"></div>
+      <p class="section-intro center">Une robe sur mesure, c'est un chemin. Voici les cinq étapes qui nous mèneront, ensemble, jusqu'au jour où vous enfilerez votre robe.</p>
+    </div>
+
+    <div class="steps-wrap">
+      <div class="steps-grid reveal">
+
+        <div class="step-card">
+          <!-- 🖼 PHOTO 3 : étape 1 — photos/etape-1.jpg -->
+          <div class="photo-slot step-photo" data-photo="etape-1">
+            <div class="step-num">1</div>
+            <div class="photo-placeholder">
+              <div class="photo-icon">❈</div>
+              <div class="photo-lbl">Étape 1</div>
+              <div class="photo-hint">photos/etape-1.jpg</div>
+            </div>
+          </div>
+          <h3 class="step-title"><em>Rencontre</em></h3>
+          <p class="step-desc">
+            <span class="step-ph-txt">✎ Texte étape 1 —</span> Le premier rendez-vous, autour d'un café. On apprend à se connaître, je découvre votre histoire, vos envies, votre style.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <!-- 🖼 PHOTO 4 : étape 2 — photos/etape-2.jpg -->
+          <div class="photo-slot step-photo" data-photo="etape-2">
+            <div class="step-num">2</div>
+            <div class="photo-placeholder">
+              <div class="photo-icon">❈</div>
+              <div class="photo-lbl">Étape 2</div>
+              <div class="photo-hint">photos/etape-2.jpg</div>
+            </div>
+          </div>
+          <h3 class="step-title"><em>Croquis</em></h3>
+          <p class="step-desc">
+            <span class="step-ph-txt">✎ Texte étape 2 —</span> Je vous présente les premiers croquis de votre robe. On ajuste ensemble la silhouette, les matières et les détails.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <!-- 🖼 PHOTO 5 : étape 3 — photos/etape-3.jpg -->
+          <div class="photo-slot step-photo" data-photo="etape-3">
+            <div class="step-num">3</div>
+            <div class="photo-placeholder">
+              <div class="photo-icon">❈</div>
+              <div class="photo-lbl">Étape 3</div>
+              <div class="photo-hint">photos/etape-3.jpg</div>
+            </div>
+          </div>
+          <h3 class="step-title"><em>Toile</em></h3>
+          <p class="step-desc">
+            <span class="step-ph-txt">✎ Texte étape 3 —</span> Premier essayage sur toile blanche. On valide les volumes, les lignes, l'allure générale de la robe.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <!-- 🖼 PHOTO 6 : étape 4 — photos/etape-4.jpg -->
+          <div class="photo-slot step-photo" data-photo="etape-4">
+            <div class="step-num">4</div>
+            <div class="photo-placeholder">
+              <div class="photo-icon">❈</div>
+              <div class="photo-lbl">Étape 4</div>
+              <div class="photo-hint">photos/etape-4.jpg</div>
+            </div>
+          </div>
+          <h3 class="step-title"><em>Essayage</em></h3>
+          <p class="step-desc">
+            <span class="step-ph-txt">✎ Texte étape 4 —</span> La robe dans son tissu final. On affine les détails, on ajuste chaque centimètre pour qu'elle soit parfaite.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <!-- 🖼 PHOTO 7 : étape 5 — photos/etape-5.jpg -->
+          <div class="photo-slot step-photo" data-photo="etape-5">
+            <div class="step-num">5</div>
+            <div class="photo-placeholder">
+              <div class="photo-icon">❈</div>
+              <div class="photo-lbl">Étape 5</div>
+              <div class="photo-hint">photos/etape-5.jpg</div>
+            </div>
+          </div>
+          <h3 class="step-title"><em>Remise</em></h3>
+          <p class="step-desc">
+            <span class="step-ph-txt">✎ Texte étape 5 —</span> Le dernier rendez-vous. Votre robe vous attend, prête à vous accompagner pour le plus beau jour.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ROBE INVITÉE ═══════════ -->
+<section id="invitee">
+  <div class="container">
+    <div style="text-align:center;max-width:700px;margin:0 auto 40px" class="reveal">
+      <div class="section-label center" style="color:var(--sable)">Pour les invitées</div>
+      <h2 class="section-title center">Votre robe <em>d'invitée</em></h2>
+      <div class="divider center"></div>
+      <p class="section-intro center">Un mariage, un baptême, une soirée importante — parce que les grandes occasions méritent une tenue qui vous ressemble vraiment.</p>
+    </div>
+
+    <div class="invitee-grid reveal">
+
+      <!-- 🖼 PHOTO 8 : Robe invitée — photos/invitee.jpg -->
+      <div class="photo-slot invitee-photo" data-photo="invitee">
+        <div class="photo-placeholder">
+          <div class="photo-icon">❈</div>
+          <div class="photo-lbl">Robe invitée</div>
+          <div class="photo-hint">photos/invitee.jpg</div>
+        </div>
+      </div>
+
+      <div class="invitee-content">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--blanc-casse);margin-bottom:20px;line-height:1.2">Une tenue <em style="font-style:italic;color:var(--sable)">sur mesure</em>, à votre image</h3>
+        <div class="text-ph" style="background:rgba(232,217,197,.05);border-color:rgba(232,217,197,.2);color:rgba(232,217,197,.5)">
+          ✎ Emplacement pour l'explication du concept robe d'invitée
+        </div>
+        <p class="invitee-text">Être invitée à un mariage, c'est aussi l'occasion d'une belle tenue. Je crée des robes uniques, pensées pour vous mettre en valeur — sans jamais voler la vedette à la mariée. Le luxe d'une pièce sur mesure, adaptée à votre morphologie, votre style et l'événement.</p>
+
+        <div class="invitee-features">
+          <div class="inv-feat">
+            <div class="inv-feat-icon">❈</div>
+            <div class="inv-feat-text"><strong>Conception sur mesure</strong><br>Chaque robe est unique, créée pour vous et vous seule.</div>
+          </div>
+          <div class="inv-feat">
+            <div class="inv-feat-icon">❈</div>
+            <div class="inv-feat-text"><strong>3 rendez-vous en atelier</strong><br>De l'échange initial aux retouches finales.</div>
+          </div>
+          <div class="inv-feat">
+            <div class="inv-feat-icon">❈</div>
+            <div class="inv-feat-text"><strong>Matières nobles</strong><br>Soie, satin, dentelle — sélectionnées avec soin pour votre occasion.</div>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn-primary" style="background:var(--caramel);border-color:var(--caramel);color:var(--choco-nuit);margin-top:40px">En savoir plus →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GALERIE ═══════════ -->
+<section id="galerie">
+  <div class="container">
+    <div style="text-align:center;max-width:620px;margin:0 auto" class="reveal">
+      <div class="section-label center">Elles ont dit oui</div>
+      <h2 class="section-title center">La <em>galerie</em></h2>
+      <div class="divider center"></div>
+      <p class="section-intro center">Quelques-unes des robes sorties de l'atelier ces dernières années — et des mots de celles qui les ont portées.</p>
+    </div>
+
+    <div class="gallery-grid reveal">
+      <!-- 🖼 PHOTOS 9-16 : galerie clientes — photos/galerie-1.jpg à photos/galerie-8.jpg -->
+      <div class="photo-slot gal-item" data-photo="galerie-1"><div class="photo-placeholder"><div class="photo-icon">❈</div><div class="photo-lbl">Cliente 1</div><div class="photo-hint">photos/galerie-1.jpg</div></div></div>
+      <div class="photo-slot gal-item" data-photo="galerie-2"><div class="photo-placeholder"><div class="photo-icon">❈</div><div class="photo-lbl">Cliente 2</div><div class="photo-hint">photos/galerie-2.jpg</div></div></div>
+      <div class="photo-slot gal-item" data-photo="galerie-3"><div class="photo-placeholder"><div class="photo-icon">❈</div><div class="photo-lbl">Cliente 3</div><div class="photo-hint">photos/galerie-3.jpg</div></div></div>
+      <div class="photo-slot gal-item wide" data-photo="galerie-4"><div class="photo-placeholder"><div class="photo-icon">❈</div><div class="photo-lbl">Photo mise en avant</div><div class="photo-hint">photos/galerie-4.jpg</div></div></div>
+      <div class="photo-slot gal-item" data-photo="galerie-5"><div class="photo-placeholder"><div class="photo-icon">❈</div><div class="photo-lbl">Cliente 5</div><div class="photo-hint">photos/galerie-5.jpg</div></div></div>
+      <div class="photo-slot gal-item" data-photo="galerie-6"><div class="photo-placeholder"><div class="photo-icon">❈</div><div class="photo-lbl">Cliente 6</div><div class="photo-hint">photos/galerie-6.jpg</div></div></div>
+      <div class="photo-slot gal-item" data-photo="galerie-7"><div class="photo-placeholder"><div class="photo-icon">❈</div><div class="photo-lbl">Cliente 7</div><div class="photo-hint">photos/galerie-7.jpg</div></div></div>
+      <div class="photo-slot gal-item" data-photo="galerie-8"><div class="photo-placeholder"><div class="photo-icon">❈</div><div class="photo-lbl">Cliente 8</div><div class="photo-hint">photos/galerie-8.jpg</div></div></div>
+    </div>
+
+    <div class="avis-wrap reveal">
+      <div class="avis-inner">
+
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-text">"Mahé a créé la robe de mes rêves. Chaque détail a été pensé, chaque essayage était un moment précieux. Je me suis sentie unique."</p>
+          <div class="avis-author"><strong>Camille</strong> — Mariée 2024</div>
+        </div>
+
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-text">"Une expérience humaine avant tout. Mahé écoute, conseille, et sa couture est d'une précision remarquable. Merci pour tout."</p>
+          <div class="avis-author"><strong>Sophie</strong> — Mariée 2023</div>
+        </div>
+
+        <div class="avis-card">
+          <div class="avis-stars">★★★★★</div>
+          <p class="avis-text">"Ma robe d'invitée a fait sensation. C'est rare de trouver quelqu'un qui crée avec autant de sensibilité. Je recommande les yeux fermés."</p>
+          <div class="avis-author"><strong>Élise</strong> — Invitée 2024</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact">
+  <div class="container">
+    <div style="text-align:center;max-width:620px;margin:0 auto" class="reveal">
+      <div class="section-label center">Prendre rendez-vous</div>
+      <h2 class="section-title center">Parlons de <em>votre robe</em></h2>
+      <div class="divider center"></div>
+      <p class="section-intro center">Remplissez ce formulaire et je reviens vers vous rapidement. Chaque demande est traitée avec attention.</p>
+    </div>
+
+    <div class="contact-grid reveal">
+
+      <div class="contact-info-block">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--choco-nuit);margin-bottom:20px">L'atelier</h3>
+        <p class="contact-info-txt">Je reçois sur rendez-vous, à Bruges, dans un espace pensé pour vous — un moment à vous, pour imaginer votre robe dans le calme et la confidentialité.</p>
+
+        <div class="contact-detail-row">
+          <div class="contact-ico">✦</div>
+          <div><span class="contact-det-label">Atelier</span><div class="contact-det-text">Bruges, Belgique</div></div>
+        </div>
+        <div class="contact-detail-row">
+          <div class="contact-ico">☎</div>
+          <div><span class="contact-det-label">Téléphone</span><div class="contact-det-text">+32 — (à compléter)</div></div>
+        </div>
+        <div class="contact-detail-row">
+          <div class="contact-ico">✉</div>
+          <div><span class="contact-det-label">Email</span><div class="contact-det-text">contact@mahe.be</div></div>
+        </div>
+        <div class="contact-detail-row">
+          <div class="contact-ico">❀</div>
+          <div><span class="contact-det-label">Instagram</span><div class="contact-det-text">@mahe.couture</div></div>
+        </div>
+      </div>
+
+      <form class="form" onsubmit="event.preventDefault();alert('Merci — votre message a bien été envoyé.');">
+
+        <div class="form-row">
+          <div><label class="form-label">Prénom</label><input type="text" placeholder="Votre prénom" required></div>
+          <div><label class="form-label">Nom</label><input type="text" placeholder="Votre nom" required></div>
+        </div>
+
+        <div class="form-row">
+          <div><label class="form-label">Email</label><input type="email" placeholder="vous@email.com"></div>
+          <div><label class="form-label">Téléphone</label><input type="tel" placeholder="+32 000 00 00 00"></div>
+        </div>
+
+        <div class="form-row-single">
+          <label class="form-label">Date du mariage (si connue)</label>
+          <input type="text" placeholder="JJ / MM / AAAA ou 'pas encore fixée'">
+        </div>
+
+        <div class="form-row-single">
+          <label class="form-label">Savez-vous ce que vous voulez ?</label>
+          <div class="radio-group" id="visionGroup">
+            <div class="radio-opt" data-v="exactement">Oui, exactement</div>
+            <div class="radio-opt" data-v="vaguement">Je sais vaguement</div>
+            <div class="radio-opt" data-v="peu">Pas vraiment</div>
+            <div class="radio-opt" data-v="pas">Pas du tout</div>
+          </div>
+        </div>
+
+        <div class="form-row-single">
+          <label class="form-label">Un message à ajouter ?</label>
+          <textarea placeholder="Racontez-moi votre projet, vos envies, l'occasion..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Envoyer ma demande →</button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-top">
+
+    <div class="footer-col">
+      <img src="logo-mahe.png" alt="Mahé" class="footer-logo">
+      <div class="footer-tag">Robes sur mesure — Bruges</div>
+      <p class="footer-desc">Atelier de couture à Bruges. Création sur mesure de robes de mariée et de robes d'invitée pour toutes les grandes occasions.</p>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <a href="#apropos">À propos</a>
+      <a href="#mariee">Robe de mariée</a>
+      <a href="#invitee">Robe d'invitée</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <a href="#">Bruges, Belgique</a>
+      <a href="tel:+32">+32 — à compléter</a>
+      <a href="mailto:contact@mahe.be">contact@mahe.be</a>
+      <a href="https://instagram.com/mahe.couture" target="_blank">@mahe.couture</a>
+      <div class="socials" style="margin-top:16px">
+        <a href="#" class="social-link" title="Instagram">◈</a>
+        <a href="mailto:contact@mahe.be" class="social-link" title="Email">✉</a>
+        <a href="tel:+32" class="social-link" title="Téléphone">☎</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div>© 2025 Mahé — Tous droits réservés</div>
+    <div>Bruges, Belgique</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════
+   SYSTÈME AUTO-LOAD DES PHOTOS
+   → Au chargement, cherche chaque photo dans /photos/
+   → Si elle existe, l'affiche en background
+   → Sinon, garde le placeholder visible
+═══════════════════════════════════════════════ */
+document.querySelectorAll('.photo-slot[data-photo]').forEach(slot=>{
+  const name = slot.dataset.photo;
+  // Essaie .jpg puis .png puis .jpeg puis .webp
+  const tryExtensions = ['jpg','jpeg','png','webp'];
+  let i = 0;
+  function tryNext(){
+    if(i >= tryExtensions.length) return; // Aucun fichier trouvé → on garde le placeholder
+    const img = new Image();
+    const url = `photos/${name}.${tryExtensions[i]}`;
+    img.onload = () => {
+      slot.style.backgroundImage = `url('${url}')`;
+      slot.classList.add('filled');
+    };
+    img.onerror = () => { i++; tryNext(); };
+    img.src = url;
+  }
+  tryNext();
+});
+
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',scrollY>40);
+  const sections=['hero','apropos','mariee','invitee','galerie','contact'];
+  let current='hero';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el && el.getBoundingClientRect().top<=120) current=id;
+  });
+  document.querySelectorAll('.nav-link').forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('href')==='#'+current);
+  });
+});
+
+// Reveal animations
+const obs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting) e.target.classList.add('visible');
+}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+
+// Radio opts
+document.querySelectorAll('#visionGroup .radio-opt').forEach(o=>{
+  o.addEventListener('click',()=>{
+    document.querySelectorAll('#visionGroup .radio-opt').forEach(x=>x.classList.remove('active'));
+    o.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

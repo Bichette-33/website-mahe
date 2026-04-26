@@ -1,0 +1,8 @@
+# robots.txt — Mahé
+# Site officiel : https://wedding-mahe.fr
+
+User-agent: *
+Allow: /
+
+# Sitemap pour indexation rapide
+Sitemap: https://wedding-mahe.fr/sitemap.xml

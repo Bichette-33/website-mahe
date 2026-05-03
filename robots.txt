@@ -1,0 +1,8 @@
+# robots.txt — Mahé
+# Site officiel : https://mahesurmesure.fr
+
+User-agent: *
+Allow: /
+
+# Sitemap pour indexation rapide
+Sitemap: https://mahesurmesure.fr/sitemap.xml

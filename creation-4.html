@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+
+<title>Robe courte et cape de soie — Collection Mahé</title>
+<meta name="description" content="Une robe courte pour la mairie, accompagnée d'une cape longue en mousseline de soie.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mahesurmesure.fr/creation-4.html">
+
+<link rel="icon" type="image/png" href="logo-mahe.png">
+<link rel="apple-touch-icon" href="logo-mahe.png">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mahesurmesure.fr/creation-4.html">
+<meta property="og:title" content="Robe courte et cape de soie — Collection Mahé">
+<meta property="og:description" content="Une robe courte pour la mairie, accompagnée d'une cape longue en mousseline de soie.">
+<meta property="og:image" content="https://mahesurmesure.fr/photos/collection-4.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Mahé">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --choco-nuit: #2C1A0E;
+  --choco-chaud: #5C3337;
+  --caramel: #A67048;
+  --sable: #E8D9C5;
+  --creme: #F5EFE6;
+  --blanc-casse: #FAFBF5;
+
+  --text: #2C1A0E;
+  --text-soft: #6B4E3D;
+  --text-mute: #9A826F;
+
+  --px-mobile: 24px;
+  --px-tablet: 40px;
+  --px-desktop: 60px;
+  --section-py-mobile: 70px;
+  --section-py-desktop: 120px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--creme);
+  color:var(--text);
+  font-weight:300;
+  line-height:1.6;
+  overflow-x:hidden;
+  min-width:320px;
+}
+img{max-width:100%;display:block}
+a:focus-visible,button:focus-visible{outline:2px solid var(--caramel);outline-offset:3px}
+
+/* ═══════════ NAVIGATION ═══════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px var(--px-desktop);
+  background:rgba(245,239,230,.7);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  transition:all .35s ease;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(245,239,230,.97);
+  padding:10px var(--px-desktop);
+  border-bottom-color:rgba(166,112,72,.15);
+}
+.logo-wrap{display:flex;align-items:center;text-decoration:none;color:var(--choco-nuit);z-index:102}
+.logo-img{height:64px;width:auto;transition:height .35s ease}
+nav.scrolled .logo-img{height:52px}
+
+.nav-links{display:flex;gap:38px;list-style:none;align-items:center}
+.nav-links a{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--text);text-decoration:none;font-weight:300;
+  position:relative;padding:6px 0;transition:color .2s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1px;background:var(--caramel);
+  transition:width .3s ease;
+}
+.nav-links a:hover{color:var(--caramel)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--caramel)}
+
+.burger{
+  display:none;width:44px;height:44px;
+  background:none;border:none;cursor:pointer;
+  padding:10px;z-index:102;position:relative;
+}
+.burger span{
+  display:block;width:24px;height:1.5px;
+  background:var(--choco-nuit);
+  transition:all .3s ease;margin:5px auto;
+}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+
+/* ═══════════ EMPLACEMENTS PHOTO ═══════════ */
+.photo-slot{
+  position:relative;
+  background:var(--sable);
+  background-size:cover;
+  background-position:center center;
+  overflow:hidden;
+}
+.photo-placeholder{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;
+  background:
+    linear-gradient(135deg, rgba(166,112,72,.08) 0%, transparent 50%),
+    repeating-linear-gradient(45deg,
+      rgba(166,112,72,.05) 0, rgba(166,112,72,.05) 2px,
+      transparent 2px, transparent 18px);
+  color:var(--text-soft);
+  transition:opacity .3s;
+  padding:16px;text-align:center;
+}
+.photo-slot.filled .photo-placeholder{opacity:0;pointer-events:none}
+.photo-placeholder::before{
+  content:'';position:absolute;inset:12px;
+  border:1px dashed rgba(166,112,72,.35);
+}
+.photo-icon{font-size:28px;color:var(--caramel);opacity:.7;z-index:1}
+.photo-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;z-index:1;text-align:center}
+.photo-hint{
+  font-size:9px;color:var(--text-mute);font-style:italic;z-index:1;
+  text-align:center;font-family:monospace;
+  background:rgba(250,251,245,.7);padding:3px 7px;
+  border-radius:2px;word-break:break-all;
+}
+
+/* ═══════════ TITRES & SECTIONS ═══════════ */
+section{padding:var(--section-py-desktop) var(--px-desktop);position:relative}
+.container{max-width:1300px;margin:0 auto}
+.section-label{
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--caramel);margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-label::before{content:'';width:24px;height:1px;background:var(--caramel);flex-shrink:0}
+.section-label.center{justify-content:center}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,5vw,60px);
+  font-weight:300;line-height:1.1;
+  color:var(--choco-nuit);
+  margin-bottom:20px;letter-spacing:-.5px;
+}
+.section-title em{font-style:italic;color:var(--caramel)}
+.section-title.center{text-align:center}
+.section-intro{font-size:15px;line-height:1.85;color:var(--text-soft);max-width:620px}
+.section-intro.center{text-align:center;margin:0 auto}
+.divider{width:56px;height:1px;background:var(--caramel);margin:24px 0}
+.divider.center{margin:24px auto}
+
+.btn-primary,.btn-secondary{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 30px;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  text-decoration:none;font-weight:300;
+  transition:all .3s ease;
+  border:1px solid var(--choco-nuit);
+  font-family:inherit;cursor:pointer;white-space:nowrap;
+}
+.btn-primary{background:var(--choco-nuit);color:var(--blanc-casse)}
+.btn-primary:hover{background:var(--caramel);border-color:var(--caramel)}
+.btn-secondary{background:transparent;color:var(--choco-nuit)}
+.btn-secondary:hover{background:var(--choco-nuit);color:var(--blanc-casse)}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{background:var(--choco-nuit);color:var(--sable);padding:60px var(--px-desktop) 28px}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px;
+  max-width:1300px;margin:0 auto;padding-bottom:40px;
+  border-bottom:1px solid rgba(232,217,197,.15);
+}
+.footer-logo{margin-bottom:16px;filter:invert(1) brightness(1.2);height:68px;width:auto}
+.footer-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--caramel);margin-bottom:18px}
+.footer-desc{font-size:13px;line-height:1.7;color:rgba(232,217,197,.78);max-width:360px}
+.footer-col-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--caramel);margin-bottom:18px}
+.footer-col a{
+  display:block;font-size:13px;color:rgba(232,217,197,.78);
+  text-decoration:none;margin-bottom:10px;transition:color .2s;word-break:break-all;
+}
+.footer-col a:hover{color:var(--blanc-casse)}
+.footer-bottom{
+  max-width:1300px;margin:28px auto 0;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(232,217,197,.55);flex-wrap:wrap;gap:14px;
+}
+.socials{display:flex;gap:12px;margin-top:14px}
+.social-link{
+  width:36px;height:36px;
+  border:1px solid rgba(232,217,197,.4);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(232,217,197,.78);text-decoration:none;
+  transition:all .3s;font-size:13px;line-height:1;
+  font-family:'Segoe UI Symbol','Noto Sans Symbols',sans-serif;
+}
+.social-link span{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.social-link:hover{border-color:var(--caramel);color:var(--caramel)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:none}
+
+body.menu-open{overflow:hidden}
+
+@media (max-width:1024px){
+  nav{padding:12px var(--px-tablet)}
+  nav.scrolled{padding:10px var(--px-tablet)}
+  section{padding:90px var(--px-tablet)}
+  footer{padding:56px var(--px-tablet) 28px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+  .footer-col:first-child{grid-column:span 2}
+}
+@media (max-width:768px){
+  .nav-links{
+    display:flex;position:fixed;top:0;right:0;
+    width:85%;max-width:360px;height:100vh;
+    background:var(--creme);flex-direction:column;
+    justify-content:center;align-items:flex-start;
+    padding:80px 40px;gap:28px;
+    transform:translateX(100%);
+    transition:transform .4s cubic-bezier(.4,0,.2,1);
+    box-shadow:-20px 0 60px rgba(44,26,14,.15);
+  }
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:14px;letter-spacing:3px;padding:8px 0}
+  .burger{display:block}
+  nav{padding:10px var(--px-mobile)}
+  nav.scrolled{padding:8px var(--px-mobile)}
+  .logo-img{height:54px}
+  nav.scrolled .logo-img{height:46px}
+  section{padding:var(--section-py-mobile) var(--px-mobile)}
+  footer{padding:50px var(--px-mobile) 24px}
+  .section-title{font-size:clamp(28px,7vw,40px)}
+  .section-intro{font-size:14px}
+  .footer-top{grid-template-columns:1fr;gap:36px;padding-bottom:32px}
+  .footer-col:first-child{grid-column:span 1}
+  .footer-bottom{flex-direction:column;text-align:center;gap:10px}
+  .footer-logo{height:60px}
+  .btn-primary,.btn-secondary{justify-content:center;padding:14px 24px}
+}
+@media (max-width:480px){
+  :root{--px-mobile:20px}
+  .logo-img{height:48px}
+  nav.scrolled .logo-img{height:42px}
+  .section-title{font-size:28px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+
+/* ═══════════ FIL D'ARIANE ═══════════ */
+#creation{padding-top:170px;background:var(--creme)}
+.retour{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--text-soft);text-decoration:none;
+  margin-bottom:36px;transition:color .25s;
+}
+.retour::before{
+  content:'';width:22px;height:1px;background:var(--text-mute);
+  transition:width .3s ease, background .25s;
+}
+.retour:hover{color:var(--caramel)}
+.retour:hover::before{width:32px;background:var(--caramel)}
+
+/* ═══════════ MISE EN PAGE PHOTOS / TEXTE ═══════════ */
+.creation-grid{
+  display:grid;
+  grid-template-columns:7fr 5fr;
+  gap:60px;
+  align-items:start;
+}
+.creation-photos{display:flex;flex-direction:column;gap:18px}
+.creation-photo-main{aspect-ratio:3/4;box-shadow:0 30px 60px -24px rgba(44,26,14,.28)}
+.creation-photos-sub{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.creation-photo-sub{aspect-ratio:3/4}
+.photo-slot.filled{cursor:zoom-in}
+
+/* Colonne texte, collante au scroll */
+.creation-aside{position:sticky;top:120px}
+.creation-eyebrow{
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--caramel);margin-bottom:14px;
+}
+.creation-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,3.4vw,44px);
+  font-weight:300;line-height:1.12;
+  color:var(--choco-nuit);letter-spacing:-.5px;
+}
+.creation-resume{
+  font-family:'Cormorant Garamond',serif;
+  font-size:19px;font-style:italic;line-height:1.6;
+  color:var(--choco-chaud);margin-bottom:26px;
+}
+.creation-text{font-size:15px;line-height:1.9;color:var(--text-soft);margin-bottom:16px}
+
+.creation-details{
+  margin-top:34px;padding-top:26px;
+  border-top:1px solid rgba(166,112,72,.22);
+}
+.detail-row{
+  display:grid;grid-template-columns:96px 1fr;gap:18px;
+  padding:9px 0;font-size:13px;
+}
+.detail-key{color:var(--text-mute);letter-spacing:1px}
+.detail-val{color:var(--choco-nuit)}
+
+.creation-aside .btn-primary{margin-top:30px}
+
+/* ═══════════ CRÉATION SUIVANTE / PRÉCÉDENTE ═══════════ */
+.creation-nav{
+  margin-top:90px;padding-top:34px;
+  border-top:1px solid rgba(166,112,72,.22);
+  display:flex;justify-content:space-between;align-items:center;
+  gap:20px;flex-wrap:wrap;
+}
+.creation-nav a{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--text-soft);text-decoration:none;transition:color .25s;
+  max-width:45%;
+}
+.creation-nav a:hover{color:var(--caramel)}
+.creation-nav span{
+  display:block;font-family:'Cormorant Garamond',serif;
+  font-size:17px;letter-spacing:0;text-transform:none;
+  color:var(--choco-nuit);margin-top:6px;line-height:1.3;
+}
+.creation-nav .nav-next{text-align:right;margin-left:auto}
+
+/* ═══════════ AGRANDISSEMENT PHOTO ═══════════ */
+.zoom{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(44,26,14,.94);
+  display:none;align-items:center;justify-content:center;
+  padding:40px;cursor:zoom-out;
+}
+.zoom.open{display:flex}
+.zoom img{max-width:100%;max-height:90vh;width:auto;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.zoom-close{
+  position:absolute;top:22px;right:26px;
+  width:44px;height:44px;border-radius:50%;
+  background:none;border:1px solid rgba(232,217,197,.5);
+  color:var(--sable);font-size:20px;line-height:1;
+  cursor:pointer;transition:all .25s;
+}
+.zoom-close:hover{background:var(--sable);color:var(--choco-nuit)}
+
+@media (max-width:1024px){
+  #creation{padding-top:140px}
+  .creation-grid{grid-template-columns:1fr;gap:44px}
+  .creation-aside{position:static}
+  .creation-photos{max-width:620px;margin:0 auto;width:100%}
+}
+@media (max-width:768px){
+  #creation{padding-top:120px}
+  .creation-photos-sub{gap:12px}
+  .creation-photos{gap:12px}
+  .creation-nav a{max-width:100%}
+  .creation-nav{flex-direction:column;align-items:flex-start}
+  .creation-nav .nav-next{text-align:left;margin-left:0}
+  .zoom{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="logo-wrap" aria-label="Retour à l'accueil">
+    <img src="logo-mahe.png" alt="Mahé — Atelier de couture, robes de mariée à Bordeaux" class="logo-img">
+  </a>
+
+  <button class="burger" id="burger" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="collection.html" class="active">Collection</a></li>
+    <li><a href="index.html#apropos">À propos</a></li>
+    <li><a href="index.html#mariee">Robe de mariée</a></li>
+    <li><a href="index.html#invitee">Robe de témoin</a></li>
+    <li><a href="index.html#galerie">Galerie</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="creation" aria-label="Robe courte et cape de soie">
+  <div class="container">
+
+    <a href="collection.html" class="retour">La collection</a>
+
+    <div class="creation-grid">
+
+      <!-- ══ PHOTOS ══ -->
+      <div class="creation-photos reveal">
+        <div class="photo-slot creation-photo-main" data-photo="collection-4">
+          <div class="photo-placeholder">
+            <div class="photo-icon">❈</div>
+            <div class="photo-lbl">Photo principale</div>
+            <div class="photo-hint">photos/collection-4.jpg</div>
+          </div>
+        </div>
+
+        <div class="creation-photos-sub">
+          <div class="photo-slot creation-photo-sub" data-photo="collection-4-2">
+            <div class="photo-placeholder">
+              <div class="photo-icon">❈</div>
+              <div class="photo-lbl">Détail 1</div>
+              <div class="photo-hint">photos/collection-4-2.jpg</div>
+            </div>
+          </div>
+          <div class="photo-slot creation-photo-sub" data-photo="collection-4-3">
+            <div class="photo-placeholder">
+              <div class="photo-icon">❈</div>
+              <div class="photo-lbl">Détail 2</div>
+              <div class="photo-hint">photos/collection-4-3.jpg</div>
+            </div>
+          </div>
+          <div class="photo-slot creation-photo-sub" data-photo="collection-4-4">
+            <div class="photo-placeholder">
+              <div class="photo-icon">❈</div>
+              <div class="photo-lbl">Détail 3</div>
+              <div class="photo-hint">photos/collection-4-4.jpg</div>
+            </div>
+          </div>
+          <div class="photo-slot creation-photo-sub" data-photo="collection-4-5">
+            <div class="photo-placeholder">
+              <div class="photo-icon">❈</div>
+              <div class="photo-lbl">Détail 4</div>
+              <div class="photo-hint">photos/collection-4-5.jpg</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TEXTE ══ -->
+      <div class="creation-aside reveal">
+        <div class="creation-eyebrow">Mariée civile 2024</div>
+        <h1 class="creation-title">Robe courte et cape de soie</h1>
+        <div class="divider"></div>
+        <p class="creation-resume">Une robe courte pour la mairie, accompagnée d'une cape longue en mousseline de soie.</p>
+        <p class="creation-text">Pour un mariage civil au printemps, l'envie était d'avoir quelque chose de court, facile à porter, mais qui garde une vraie allure de mariée.</p>
+        <p class="creation-text">La cape se ferme sur l'épaule par deux boutons recouverts et descend jusqu'au sol. Elle se retire pour le déjeuner et transforme la tenue en robe de cocktail.</p>
+        <p class="creation-text">La robe a été coupée dans un crêpe épais qui ne marque pas et tient la ligne même après une longue journée.</p>
+
+        <div class="creation-details">
+          <div class="detail-row"><div class="detail-key">Matière</div><div class="detail-val">Crêpe de laine, mousseline de soie</div></div>
+          <div class="detail-row"><div class="detail-key">Longueur</div><div class="detail-val">Au genou</div></div>
+          <div class="detail-row"><div class="detail-key">Cape</div><div class="detail-val">Longue, amovible</div></div>
+          <div class="detail-row"><div class="detail-key">Réalisation</div><div class="detail-val">Quatre rendez-vous, trois mois</div></div>
+        </div>
+
+        <a href="index.html#contact" class="btn-primary">Créer la mienne</a>
+      </div>
+
+    </div>
+
+    <div class="creation-nav">
+      <a class="nav-prev" href="creation-3.html">Création précédente<span>Manches longues en tulle brodé</span></a>
+      <a class="nav-next" href="creation-5.html">Création suivante<span>Décolleté V et traîne détachable</span></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Agrandissement photo -->
+<div class="zoom" id="zoom" role="dialog" aria-label="Photo agrandie">
+  <button class="zoom-close" id="zoomClose" aria-label="Fermer">×</button>
+  <img id="zoomImg" alt="Robe courte et cape de soie">
+</div>
+
+<footer>
+  <div class="footer-top">
+
+    <div class="footer-col">
+      <img src="logo-mahe.png" alt="Mahé — Logo de l'atelier de couture" class="footer-logo">
+      <div class="footer-tag">Robes sur mesure — Bruges, Bordeaux</div>
+      <p class="footer-desc">Atelier de couture à Bruges, près de Bordeaux. Création sur mesure de robes de mariée et de robes de témoin, pensées ensemble pour vivre les essayages à plusieurs.</p>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <a href="collection.html">Collection</a>
+      <a href="index.html#apropos">À propos</a>
+      <a href="index.html#mariee">Robe de mariée</a>
+      <a href="index.html#invitee">Robe de témoin</a>
+      <a href="index.html#galerie">Galerie</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <a href="#">Bruges, près de Bordeaux</a>
+      <a href="tel:+33748170942">07 48 17 09 42</a>
+      <a href="mailto:contact.mahemh@gmail.com">contact.mahemh@gmail.com</a>
+      <a href="https://instagram.com/mahe.couture" target="_blank" rel="noopener">@mahe_studio</a>
+      <div class="socials">
+        <a href="mailto:contact.mahemh@gmail.com" class="social-link" title="Email" aria-label="Email"><span>✉</span></a>
+        <a href="tel:0748170942" class="social-link" title="Téléphone" aria-label="Téléphone"><span>☎</span></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div>© 2025 Mahé — Tous droits réservés</div>
+    <div>Bruges, près de Bordeaux</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════ BURGER MENU ═══════════ */
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    navLinks.classList.remove('open');
+    document.body.classList.remove('menu-open');
+  });
+});
+
+/* ═══════════ NAV AU SCROLL ═══════════ */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 40);
+});
+
+/* ═══════════ CHARGEMENT AUTO DES PHOTOS ═══════════ */
+/* Essaie plusieurs extensions ET majuscules/minuscules */
+document.querySelectorAll('.photo-slot[data-photo]').forEach(slot => {
+  const name = slot.dataset.photo;
+  const tryExtensions = ['jpg','JPG','jpeg','JPEG','png','PNG','webp','WEBP'];
+  let i = 0;
+  function tryNext(){
+    if(i >= tryExtensions.length) return;
+    const img = new Image();
+    const url = `photos/${name}.${tryExtensions[i]}`;
+    img.onload = () => {
+      slot.style.backgroundImage = `url('${url}')`;
+      slot.classList.add('filled');
+      slot.dataset.src = url;
+    };
+    img.onerror = () => { i++; tryNext(); };
+    img.src = url;
+  }
+  tryNext();
+});
+
+/* ═══════════ REVEAL AU SCROLL ═══════════ */
+const obs = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting) e.target.classList.add('visible');
+}), {threshold:.1});
+document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+/* ═══════════ AGRANDISSEMENT AU CLIC ═══════════ */
+const zoom = document.getElementById('zoom');
+const zoomImg = document.getElementById('zoomImg');
+function openZoom(src){
+  zoomImg.src = src;
+  zoom.classList.add('open');
+  document.body.classList.add('menu-open');
+}
+function closeZoom(){
+  zoom.classList.remove('open');
+  document.body.classList.remove('menu-open');
+  zoomImg.src = '';
+}
+document.querySelectorAll('.creation-photos .photo-slot').forEach(slot => {
+  slot.addEventListener('click', () => {
+    if(slot.dataset.src) openZoom(slot.dataset.src);
+  });
+});
+zoom.addEventListener('click', closeZoom);
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeZoom();
+});
+</script>
+</body>
+</html>

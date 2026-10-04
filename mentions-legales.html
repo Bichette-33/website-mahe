@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
-
 <title>Mentions légales — Mahé</title>
-<meta name="description" content="Mentions légales du site de l'atelier Mahé, création de robes de mariée sur mesure à Bruges, près de Bordeaux.">
+<meta name="description" content="Mentions légales du site de l'atelier Mahé, robes de mariée sur mesure à Bruges, près de Bordeaux.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://mahesurmesure.fr/mentions-legales.html">
-
 <link rel="icon" type="image/png" href="logo-mahe.png">
 <link rel="apple-touch-icon" href="logo-mahe.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
@@ -184,6 +182,13 @@ footer{background:var(--choco-nuit);color:var(--sable);padding:60px var(--px-des
   text-decoration:none;margin-bottom:10px;transition:color .2s;word-break:break-all;
 }
 .footer-col a:hover{color:var(--blanc-casse)}
+.footer-legal{display:flex;gap:18px;align-items:center}
+.footer-legal a{
+  color:rgba(232,217,197,.55);text-decoration:none;transition:color .2s;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+}
+.footer-legal a:hover{color:var(--caramel)}
+
 .footer-bottom{
   max-width:1300px;margin:28px auto 0;
   display:flex;justify-content:space-between;align-items:center;
@@ -240,6 +245,7 @@ body.menu-open{overflow:hidden}
   .footer-top{grid-template-columns:1fr;gap:36px;padding-bottom:32px}
   .footer-col:first-child{grid-column:span 1}
   .footer-bottom{flex-direction:column;text-align:center;gap:10px}
+  .footer-legal{flex-direction:column;gap:8px}
   .footer-logo{height:60px}
   .btn-primary,.btn-secondary{justify-content:center;padding:14px 24px}
 }
@@ -256,70 +262,25 @@ body.menu-open{overflow:hidden}
 }
 
 
-/* ═══════════ PAGES LÉGALES ═══════════ */
-.footer-legal{display:flex;gap:18px;align-items:center}
-.footer-legal a{
-  color:rgba(232,217,197,.55);text-decoration:none;
-  transition:color .2s;font-size:10px;letter-spacing:2px;text-transform:uppercase;
-}
-.footer-legal a:hover{color:var(--caramel)}
-
-#legal{padding-top:170px;background:var(--creme)}
-.legal-wrap{max-width:760px;margin:0 auto}
-.legal-maj{
-  font-size:10px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--text-mute);margin-bottom:46px;
-}
-.legal-block{margin-bottom:46px}
+#legal{padding-top:170px;padding-bottom:90px;background:var(--creme)}
+.legal-wrap{max-width:720px;margin:0 auto}
+.legal-maj{font-size:11px;letter-spacing:1px;color:var(--text-mute);margin-bottom:50px}
+.legal-block{margin-bottom:38px}
 .legal-h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:26px;font-weight:400;color:var(--choco-nuit);
-  margin-bottom:6px;letter-spacing:-.2px;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--caramel);margin-bottom:14px;
 }
-.legal-h2 + .legal-rule{
-  width:40px;height:1px;background:var(--caramel);
-  margin-bottom:20px;
-}
-.legal-block p{font-size:15px;line-height:1.85;color:var(--text-soft);margin-bottom:14px}
+.legal-block p{font-size:14px;line-height:1.8;color:var(--text-soft);margin-bottom:10px}
 .legal-block p:last-child{margin-bottom:0}
-.legal-block a{color:var(--caramel);text-decoration:none;border-bottom:1px solid rgba(166,112,72,.35)}
-.legal-block a:hover{border-bottom-color:var(--caramel)}
-.legal-block ul{list-style:none;margin:4px 0 14px}
-.legal-block li{
-  font-size:15px;line-height:1.8;color:var(--text-soft);
-  padding-left:20px;position:relative;margin-bottom:7px;
-}
-.legal-block li::before{
-  content:'';position:absolute;left:0;top:13px;
-  width:7px;height:1px;background:var(--caramel);
-}
-
-/* Lignes identité : libellé / valeur */
-.legal-id{display:grid;grid-template-columns:200px 1fr;gap:16px;padding:9px 0;font-size:15px}
-.legal-id dt{color:var(--text-mute);font-size:13px;letter-spacing:.5px}
-.legal-id dd{color:var(--choco-nuit)}
-
-/* Champs à compléter par Manon */
+.legal-block a{color:var(--choco-nuit);text-decoration:underline;text-underline-offset:2px}
+.legal-block a:hover{color:var(--caramel)}
+.legal-block strong{font-weight:400;color:var(--choco-nuit)}
 .todo{
-  background:rgba(166,112,72,.13);
+  background:rgba(166,112,72,.14);
   border-bottom:1px dashed var(--caramel);
-  padding:1px 7px;color:var(--choco-chaud);
-  font-size:13px;font-style:italic;
+  padding:0 5px;color:var(--choco-chaud);font-style:italic;
 }
-.todo-note{
-  background:var(--sable);
-  border-left:2px solid var(--caramel);
-  padding:20px 24px;margin-bottom:46px;
-  font-size:14px;line-height:1.75;color:var(--choco-chaud);
-}
-.todo-note strong{font-weight:400;color:var(--choco-nuit)}
-
-@media (max-width:768px){
-  #legal{padding-top:120px}
-  .legal-id{grid-template-columns:1fr;gap:2px;padding:10px 0}
-  .legal-h2{font-size:23px}
-  .footer-legal{flex-direction:column;gap:8px}
-}
+@media (max-width:768px){#legal{padding-top:120px;padding-bottom:60px}}
 </style>
 </head>
 <body>
@@ -328,11 +289,9 @@ body.menu-open{overflow:hidden}
   <a href="index.html" class="logo-wrap" aria-label="Retour à l'accueil">
     <img src="logo-mahe.png" alt="Mahé — Atelier de couture, robes de mariée à Bordeaux" class="logo-img">
   </a>
-
   <button class="burger" id="burger" aria-label="Ouvrir le menu">
     <span></span><span></span><span></span>
   </button>
-
   <ul class="nav-links" id="navLinks">
     <li><a href="collection.html">Collection</a></li>
     <li><a href="index.html#apropos">À propos</a></li>
@@ -346,66 +305,56 @@ body.menu-open{overflow:hidden}
 <section id="legal">
   <div class="legal-wrap">
 
-    <div class="section-label">Informations légales</div>
-    <h1 class="section-title">Mentions légales</h1>
+    <h1 class="section-title" style="font-size:clamp(28px,4vw,42px)">Mentions légales</h1>
     <div class="divider"></div>
-    <p class="legal-maj">Dernière mise à jour : <span class="todo">à dater le jour de la mise en ligne</span></p>
-
-    <div class="todo-note">
-      <strong>À compléter avant publication.</strong> Chaque passage surligné doit être remplacé par la véritable information avant de mettre la page en ligne. Le médiateur de la consommation suppose d'avoir adhéré au préalable à un organisme agréé — c'est le seul point qui demande une démarche.
-    </div>
-
-    <p class="section-intro" style="margin-bottom:46px">Les informations ci-dessous sont publiées en application de l'article 6-III de la loi pour la confiance dans l'économie numérique.</p>
+    <p class="legal-maj">Mise à jour le <span class="todo">date de mise en ligne</span></p>
 
     <div class="legal-block">
-      <h2 class="legal-h2">L'éditrice du site</h2>
-      <div class="legal-rule"></div>
-      <dl>
-        <div class="legal-id"><dt>Nom de l'atelier</dt><dd>Mahé</dd></div>
-        <div class="legal-id"><dt>Responsable</dt><dd><span class="todo">prénom et nom complets de Manon</span></dd></div>
-        <div class="legal-id"><dt>Forme juridique</dt><dd><span class="todo">entreprise individuelle, micro-entreprise, SASU…</span></dd></div>
-        <div class="legal-id"><dt>Adresse</dt><dd><span class="todo">adresse complète de l'atelier à Bruges</span></dd></div>
-        <div class="legal-id"><dt>Téléphone</dt><dd>07 48 17 09 42</dd></div>
-        <div class="legal-id"><dt>Email</dt><dd><a href="mailto:contact.mahemh@gmail.com">contact.mahemh@gmail.com</a></dd></div>
-        <div class="legal-id"><dt>SIRET</dt><dd><span class="todo">14 chiffres</span></dd></div>
-        <div class="legal-id"><dt>Immatriculation</dt><dd><span class="todo">Répertoire des Métiers de la CMA de Gironde, ou RCS Bordeaux</span></dd></div>
-        <div class="legal-id"><dt>TVA</dt><dd><span class="todo">numéro de TVA intracommunautaire, ou « TVA non applicable, article 293 B du CGI » en franchise</span></dd></div>
-        <div class="legal-id"><dt>Directrice de publication</dt><dd><span class="todo">prénom et nom de Manon</span></dd></div>
-      </dl>
+      <h2 class="legal-h2">Éditeur</h2>
+      <p><strong><span class="todo">Prénom NOM</span></strong>, <span class="todo">statut juridique</span>, exerçant sous l'enseigne Mahé.<br>
+      <span class="todo">Adresse complète</span><br>
+      07 48 17 09 42 — <a href="mailto:contact.mahemh@gmail.com">contact.mahemh@gmail.com</a></p>
+      <p>SIRET <span class="todo">00000000000000</span> — <span class="todo">immatriculée au Répertoire des Métiers de la CMA de Gironde</span><br>
+      <span class="todo">TVA non applicable, article 293 B du CGI</span><br>
+      Responsable de la publication : <span class="todo">Prénom NOM</span></p>
     </div>
 
     <div class="legal-block">
-      <h2 class="legal-h2">L'hébergeur</h2>
-      <div class="legal-rule"></div>
-      <p>Ce site est hébergé par GitHub Pages, service de GitHub, Inc.</p>
-      <dl>
-        <div class="legal-id"><dt>Société</dt><dd>GitHub, Inc.</dd></div>
-        <div class="legal-id"><dt>Adresse</dt><dd>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</dd></div>
-        <div class="legal-id"><dt>Site</dt><dd><a href="https://github.com" target="_blank" rel="noopener">github.com</a></dd></div>
-      </dl>
+      <h2 class="legal-h2">Hébergement</h2>
+      <p>GitHub, Inc. — 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis — <a href="https://github.com" target="_blank" rel="noopener">github.com</a></p>
     </div>
 
     <div class="legal-block">
-      <h2 class="legal-h2">Les photographies et les textes</h2>
-      <div class="legal-rule"></div>
-      <p>Les photographies, les textes, le logo et l'ensemble des éléments qui composent ce site sont protégés par le droit d'auteur. Toute reproduction, même partielle, est interdite sans accord écrit préalable.</p>
-      <p>Les crédits photographiques reviennent à <span class="todo">nom du ou des photographes</span>. Les personnes représentées ont donné leur autorisation écrite pour la publication de leur image sur ce site.</p>
+      <h2 class="legal-h2">Propriété intellectuelle</h2>
+      <p>L'ensemble des contenus de ce site — textes, photographies, logo — est protégé par le droit d'auteur. Toute reproduction, même partielle, est interdite sans autorisation écrite. Crédits photographiques : <span class="todo">nom du photographe</span>. Les personnes représentées ont consenti par écrit à la publication de leur image.</p>
+    </div>
+
+    <div class="legal-block" id="donnees">
+      <h2 class="legal-h2">Données personnelles</h2>
+      <p>Le formulaire de contact collecte les informations que vous y saisissez : nom, prénom, adresse email, téléphone, date de mariage et message. Elles servent uniquement à répondre à votre demande et à préparer un éventuel rendez-vous, sur la base de votre consentement. Elles ne sont ni revendues, ni utilisées à des fins publicitaires.</p>
+      <p>Responsable du traitement : <span class="todo">Prénom NOM</span>. L'envoi du formulaire est assuré par le service Formspree (États-Unis), encadré par les clauses contractuelles types de la Commission européenne. Les demandes sans suite sont conservées trois ans, les dossiers de commande dix ans au titre des obligations comptables.</p>
+      <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, de portabilité et d'opposition, en écrivant à <a href="mailto:contact.mahemh@gmail.com">contact.mahemh@gmail.com</a>. Réclamation possible auprès de la CNIL — <a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>.</p>
     </div>
 
     <div class="legal-block">
-      <h2 class="legal-h2">Les données personnelles</h2>
-      <div class="legal-rule"></div>
-      <p>Le formulaire de contact collecte des données personnelles. Leur traitement est détaillé dans la <a href="confidentialite.html">politique de confidentialité</a>.</p>
-      <p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience.</p>
+      <h2 class="legal-h2">Cookies</h2>
+      <p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience. Les polices de caractères sont chargées depuis Google Fonts, ce qui transmet votre adresse IP à Google le temps du chargement.</p>
     </div>
 
+    <!-- ══════════════════════════════════════════════════════════════
+         MÉDIATION DE LA CONSOMMATION
+         Obligatoire (art. L.616-1 du code de la consommation) dès lors
+         qu'on contracte avec des particuliers. Suppose d'adhérer au
+         préalable à un organisme de médiation agréé (quelques dizaines
+         d'euros par an). Retirer les balises de commentaire une fois
+         l'organisme choisi et ses coordonnées renseignées.
+    ═══════════════════════════════════════════════════════════════ -->
+    <!--
     <div class="legal-block">
-      <h2 class="legal-h2">En cas de litige</h2>
-      <div class="legal-rule"></div>
-      <p>Conformément à l'article L.616-1 du code de la consommation, toute cliente peut recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d'un litige.</p>
-      <p>Médiateur compétent : <span class="todo">nom de l'organisme de médiation, adresse postale et site internet</span>.</p>
-      <p>La plateforme européenne de règlement en ligne des litiges est accessible à l'adresse <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>.</p>
+      <h2 class="legal-h2">Médiation de la consommation</h2>
+      <p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation suivant : <span class="todo">nom, adresse postale et site de l'organisme</span>. La plateforme européenne de règlement en ligne des litiges est accessible sur <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>.</p>
     </div>
+    -->
 
   </div>
 </section>
@@ -447,30 +396,16 @@ body.menu-open{overflow:hidden}
     <div>© 2025 Mahé — Tous droits réservés</div>
     <div class="footer-legal">
       <a href="mentions-legales.html">Mentions légales</a>
-      <a href="confidentialite.html">Confidentialité</a>
     </div>
     <div>Bruges, près de Bordeaux</div>
   </div>
 </footer>
 
 <script>
-const burger = document.getElementById('burger');
-const navLinks = document.getElementById('navLinks');
-burger.addEventListener('click', () => {
-  burger.classList.toggle('open');
-  navLinks.classList.toggle('open');
-  document.body.classList.toggle('menu-open');
-});
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    burger.classList.remove('open');
-    navLinks.classList.remove('open');
-    document.body.classList.remove('menu-open');
-  });
-});
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 40);
-});
+const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');navLinks.classList.toggle('open');document.body.classList.toggle('menu-open');});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');navLinks.classList.remove('open');document.body.classList.remove('menu-open');}));
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
 </script>
 </body>
 </html>

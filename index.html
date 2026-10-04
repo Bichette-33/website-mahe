@@ -1186,7 +1186,7 @@ body.menu-open{overflow:hidden}
         <!-- Consentement RGPD -->
         <label class="form-consent">
           <input type="checkbox" name="consentement" value="oui" required>
-          <span>J'accepte que mes informations soient utilisées pour être recontactée au sujet de ma demande. Elles ne servent à rien d'autre et ne sont transmises à personne — voir la <a href="mentions-legales.html#donnees" target="_blank">mentions légales</a>.</span>
+          <span>J'accepte que mes informations soient utilisées pour être recontactée au sujet de ma demande. Elles ne servent à rien d'autre et ne sont transmises à personne — voir les <a href="mentions-legales.html#donnees" target="_blank">mentions légales</a>.</span>
         </label>
 
         <button type="submit" class="form-submit" id="submitBtn">Envoyer ma demande →</button>
@@ -1567,7 +1567,7 @@ form.addEventListener('submit', async (e) => {
 
     if (response.ok) {
       // Succès : on cache le formulaire et on affiche le message
-      form.querySelectorAll('.form-row, .form-row-single, .form-submit').forEach(el => el.style.display = 'none');
+      form.querySelectorAll('.form-row, .form-row-single, .form-consent, .form-submit').forEach(el => el.style.display = 'none');
       successMsg.style.display = 'block';
       successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } else {

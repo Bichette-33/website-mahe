@@ -280,11 +280,9 @@ body.menu-open{overflow:hidden}
 #collection-grid{background:var(--creme);padding-top:56px}
 .mosaic{
   display:grid;
-  grid-template-columns:repeat(6,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:22px;
 }
-.mosaic-item{grid-column:span 2}
-.mosaic-item:nth-child(4){grid-column:2/span 2}
 .mosaic-item{
   display:block;
   text-decoration:none;
@@ -368,14 +366,11 @@ body.menu-open{overflow:hidden}
 }
 
 @media (max-width:1024px){
-  .mosaic{grid-template-columns:repeat(4,1fr);gap:18px}
-  .mosaic-item:nth-child(4){grid-column:auto/span 2}
-  .mosaic-item:nth-child(5){grid-column:2/span 2}
+  .mosaic{grid-template-columns:repeat(2,1fr);gap:18px}
   #collection-head{padding-top:160px}
 }
 @media (max-width:768px){
   .mosaic{grid-template-columns:1fr;gap:16px}
-  .mosaic-item,.mosaic-item:nth-child(4),.mosaic-item:nth-child(5){grid-column:auto}
   #collection-head{padding-top:130px}
   #collection-grid{padding-top:40px}
   .mosaic-title{font-size:21px}
@@ -501,6 +496,23 @@ body.menu-open{overflow:hidden}
         <div class="mosaic-caption">
           <div class="mosaic-eyebrow">Mariée 2024</div>
           <div class="mosaic-title">Décolleté V et traîne détachable</div>
+          <span class="mosaic-more">Voir la création</span>
+        </div>
+      </a>
+
+      <a class="mosaic-item" href="creation-6.html" aria-label="Le voile de dentelle">
+        <div class="photo-slot mosaic-photo" data-photo="collection-6">
+          <div class="photo-placeholder">
+            <div class="photo-icon">❈</div>
+            <div class="photo-lbl">Le voile de dentelle</div>
+            <div class="photo-hint">photos/collection-6.jpg</div>
+          </div>
+        </div>
+        <div class="mosaic-veil"></div>
+        <div class="mosaic-frame"></div>
+        <div class="mosaic-caption">
+          <div class="mosaic-eyebrow">L'accessoire</div>
+          <div class="mosaic-title">Le voile de dentelle</div>
           <span class="mosaic-more">Voir la création</span>
         </div>
       </a>

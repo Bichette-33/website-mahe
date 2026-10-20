@@ -193,6 +193,13 @@ footer{background:var(--choco-nuit);color:var(--sable);padding:60px var(--px-des
   text-decoration:none;margin-bottom:10px;transition:color .2s;word-break:break-all;
 }
 .footer-col a:hover{color:var(--blanc-casse)}
+.footer-legal{display:flex;gap:18px;align-items:center}
+.footer-legal a{
+  color:rgba(232,217,197,.55);text-decoration:none;transition:color .2s;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+}
+.footer-legal a:hover{color:var(--caramel)}
+
 .footer-bottom{
   max-width:1300px;margin:28px auto 0;
   display:flex;justify-content:space-between;align-items:center;
@@ -249,6 +256,7 @@ body.menu-open{overflow:hidden}
   .footer-top{grid-template-columns:1fr;gap:36px;padding-bottom:32px}
   .footer-col:first-child{grid-column:span 1}
   .footer-bottom{flex-direction:column;text-align:center;gap:10px}
+  .footer-legal{flex-direction:column;gap:8px}
   .footer-logo{height:60px}
   .btn-primary,.btn-secondary{justify-content:center;padding:14px 24px}
 }
@@ -552,6 +560,9 @@ body.menu-open{overflow:hidden}
 
   <div class="footer-bottom">
     <div>© 2025 Mahé — Tous droits réservés</div>
+    <div class="footer-legal">
+      <a href="mentions-legales.html">Mentions légales</a>
+    </div>
     <div>Bruges, près de Bordeaux</div>
   </div>
 </footer>
